@@ -271,8 +271,8 @@
 			feetcount++
 		for(var/obj/item/bodypart/r_leg/R in C.bodyparts)
 			feetcount++
-		if(C.get_item_by_slot(SLOT_SHOES))
-			var/obj/item/clothing/shoes/S = C.get_item_by_slot(SLOT_SHOES)
+		if(C.get_item_by_slot(ITEM_SLOT_FEET))
+			var/obj/item/clothing/shoes/S = C.get_item_by_slot(ITEM_SLOT_FEET)
 			covered = S.body_parts_covered
 		if(covered & FEET)
 			iscovered = TRUE
@@ -1381,7 +1381,7 @@
 /mob/living/proc/do_lickfeet(mob/living/partner)
 	var/message
 
-	if(partner.get_item_by_slot(SLOT_SHOES) != null)
+	if(partner.get_item_by_slot(ITEM_SLOT_FEET) != null)
 		message = "licks \the <b>[partner]</b>'s [partner.get_shoes()]."
 	else
 		message = "licks \the <b>[partner]</b>'s [partner.has_feet() == 1 ? "foot" : "feet"]."
@@ -1397,7 +1397,7 @@
 	var/message
 
 	if(is_fucking(partner, GRINDING_FACE_WITH_FEET))
-		if(src.get_item_by_slot(SLOT_SHOES) != null)
+		if(src.get_item_by_slot(ITEM_SLOT_FEET) != null)
 			message = "[pick(list("grinds their [get_shoes()] into <b>[partner]</b>'s face.",
 				"presses their footwear down hard on <b>[partner]</b>'s face.",
 				"rubs off the dirt from their [get_shoes()] onto <b>[partner]</b>'s face."))]</span>"
@@ -1407,7 +1407,7 @@
 				"runs the soles of their bare feet against <b>[partner]</b>'s lips."))]</span>"
 
 	else if(is_fucking(partner, GRINDING_MOUTH_WITH_FEET))
-		if(src.get_item_by_slot(SLOT_SHOES) != null)
+		if(src.get_item_by_slot(ITEM_SLOT_FEET) != null)
 			message = "[pick(list("pulls their [get_shoes()] out of <b>[partner]</b>'s mouth and puts them on their face.",
 				"slowly retracts their [get_shoes()] from <b>[partner]</b>'s mouth, putting them on their face instead."))]</span>"
 		else
@@ -1417,7 +1417,7 @@
 		set_is_fucking(partner , GRINDING_FACE_WITH_FEET, null)
 
 	else
-		if(src.get_item_by_slot(SLOT_SHOES) != null)
+		if(src.get_item_by_slot(ITEM_SLOT_FEET) != null)
 			message = "[pick(list("plants their [get_shoes()] ontop of <b>[partner]</b>'s face.",
 				"rests their [get_shoes()] on <b>[partner]</b>'s face and presses down hard.",
 				"harshly places their [get_shoes()] atop <b>[partner]</b>'s face."))]</span>"
@@ -1442,7 +1442,7 @@
 	var/message
 
 	if(is_fucking(partner, GRINDING_MOUTH_WITH_FEET))
-		if(src.get_item_by_slot(SLOT_SHOES) != null)
+		if(src.get_item_by_slot(ITEM_SLOT_FEET) != null)
 			message = "[pick(list("roughly shoves their [get_shoes()] deeper into <b>[partner]</b>'s mouth.",
 				"harshly forces another inch of their [get_shoes()] into <b>[partner]</b>'s mouth.",
 				"presses their weight down, their [get_shoes()] prying deeper into <b>[partner]</b>'s mouth."))]</span>"
@@ -1452,7 +1452,7 @@
 				"roughly grinds their feet on <b>[partner]</b>'s tongue."))]</span>"
 
 	else if(is_fucking(partner, GRINDING_FACE_WITH_FEET))
-		if(src.get_item_by_slot(SLOT_SHOES) != null)
+		if(src.get_item_by_slot(ITEM_SLOT_FEET) != null)
 			message = "[pick(list("decides to force their [get_shoes()] deep into <b>[partner]</b>'s mouth.",
 				"pressed the tip of their [get_shoes()] against <b>[partner]</b>'s lips and shoves inwards."))]</span>"
 		else
@@ -1462,7 +1462,7 @@
 		set_is_fucking(partner , GRINDING_MOUTH_WITH_FEET, null)
 
 	else
-		if(src.get_item_by_slot(SLOT_SHOES) != null)
+		if(src.get_item_by_slot(ITEM_SLOT_FEET) != null)
 			message = "[pick(list("readies themselves and in one swift motion, shoves their [get_shoes()] into <b>[partner]</b>'s mouth.",
 				"grinds the tip of their [get_shoes()] against <b>[partner]</b>'s mouth before pushing themselves in."))]</span>"
 		else
@@ -1611,7 +1611,7 @@
 	do_fucking_animation(get_dir(src, partner))
 
 /mob/living/proc/get_shoes(var/singular = FALSE)
-	var/obj/A = get_item_by_slot(SLOT_SHOES)
+	var/obj/A = get_item_by_slot(ITEM_SLOT_FEET)
 	if(A)
 		var/txt = A.name
 		if(findtext (A.name,"the"))
