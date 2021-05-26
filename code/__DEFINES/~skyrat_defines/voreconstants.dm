@@ -21,6 +21,14 @@
 #define DISABLE_BITFIELD(variable, flag) (variable &= ~(flag))
 #define CHECK_BITFIELD(variable, flag) (variable & (flag))
 
+#define COPY_SPECIFIC_BITFIELDS(a,b,flags)\
+	do{\
+		var/_old = a & ~(flags);\
+		var/_cleaned = b & (flags);\
+		a = _old | _cleaned;\
+	} while(0);
+
+
 #define DIGESTABLE 		(1<<0)
 #define SHOW_VORE_PREFS (1<<1)
 #define DEVOURABLE		(1<<2)
