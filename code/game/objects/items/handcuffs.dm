@@ -76,12 +76,16 @@
 	if(!iscarbon(target_mob))
 		return
 
-	attempt_to_cuff(target_mob, user) // avoid locking up the attack chain with sleeps
+<<<<<<< HEAD
+	if(SEND_SIGNAL(C, COMSIG_CARBON_CUFF_ATTEMPTED, user) & COMSIG_CARBON_CUFF_PREVENT)
+=======
+	attempt_to_cuff(target_mob, user)
 
 /// Handles all of the checks and application in a typical situation where someone attacks a carbon victim with the handcuff item.
 /obj/item/restraints/handcuffs/proc/attempt_to_cuff(mob/living/carbon/victim, mob/living/user)
 	if(SEND_SIGNAL(victim, COMSIG_CARBON_CUFF_ATTEMPTED, user) & COMSIG_CARBON_CUFF_PREVENT)
 		victim.balloon_alert(user, "can't be handcuffed!")
+>>>>>>> 17455d7db4f (Fix handcuffing (#82760))
 		return
 
 	if(iscarbon(user) && (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))) //Clumsy people have a 50% chance to handcuff themselves instead of their target.
@@ -98,6 +102,16 @@
 		to_chat(user, span_warning("[victim] doesn't have two hands..."))
 		return
 
+<<<<<<< HEAD
+=======
+	if(!isnull(victim.handcuffed))
+		victim.balloon_alert(user, "already handcuffed!")
+		return
+
+	if(!victim.canBeHandcuffed())
+		victim.balloon_alert(user, "can't be handcuffed!")
+		return
+
 	victim.visible_message(
 		span_danger("[user] is trying to put [src] on [victim]!"),
 		span_userdanger("[user] is trying to put [src] on you!"),
@@ -109,6 +123,7 @@
 	playsound(loc, cuffsound, 30, TRUE, -2)
 	log_combat(user, victim, "attempted to handcuff")
 
+>>>>>>> 17455d7db4f (Fix handcuffing (#82760))
 	if(HAS_TRAIT(user, TRAIT_FAST_CUFFING))
 		handcuff_time_mod = 0.75
 	else
